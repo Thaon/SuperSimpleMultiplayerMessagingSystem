@@ -3,9 +3,14 @@ var server = require("http").Server(app);
 var io = require("socket.io"(server));
 
 server.listen(80);
+app.use(express.static("static"))
 
 app.get("/", function(req, res){
-	res.send(/SSMMS.js);
+	 res.sendFile('/static/SSMMS.js', (err) => {
+    res.end();
+
+    if (err) throw(err);
+  });
 })
 
 
