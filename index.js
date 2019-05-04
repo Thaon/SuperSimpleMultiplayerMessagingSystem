@@ -22,6 +22,24 @@ app.get("/api", function(req, res){
 })
 
 
+function CleanRooms()
+{
+	//check if the room this socket was in is empty and remove it
+	if (rooms.length > 0)
+	{
+		rooms.forEach(function(room){
+
+			if(room.players.length == 0)
+			{
+				console.log("Cleaned up room " + room.name);
+				rooms.pop(room);
+			}
+		})
+	}
+}
+
+setInterval(CleanRooms, 5000);
+
 //vars-----------------------------------------------------------
 var rooms = [];
 
