@@ -13,6 +13,10 @@ server.listen(PORT, function() {
   console.log('Starting server on ' + PORT);
 });
 
+app.get("/", function(req, res){
+	res.sendFile(path.join(__dirname, '/static/index.html'));
+})
+
 app.get("/api", function(req, res){
 	res.sendFile(path.join(__dirname, '/static/SSMMS.js'));
 })
