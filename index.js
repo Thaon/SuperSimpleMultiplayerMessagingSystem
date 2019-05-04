@@ -119,6 +119,20 @@ io.on("connection", function(socket){
 			socket.emit("info", "Sorry but there is no empty room available :/");
 	})
 
+	socket.on("leave room", function(roomName){
+		//check if the room this socket was in is empty and remove it
+		rooms.forEach(function(room){
+			if (room.name == roomName && room.players.includes(socket))
+			{
+				socket.emit("info", "The room was left successfully");
+				room.players.pop(socket);
+			}
+
+			if(room.players.length == 0)
+				rooms.pop(room);
+		})
+	})
+
 	socket.on("message", function(type, payload){
 		//rely a message to all sockets in the same room
 		var tRoom = null;

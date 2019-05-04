@@ -30,7 +30,7 @@ var SSMMS = function(handler, gotRooms, debug)
 		{
 			if (proxy.debug)
 				console.log("Received a list of rooms");
-			
+
 			proxy.RoomsReceived(SrvRooms);
 		})
 	}
@@ -49,6 +49,10 @@ var SSMMS = function(handler, gotRooms, debug)
 
 	this.JoinEmptyRoom = function(){
 		this.socket.emit("join empty room");
+	}
+
+	this.LeaveRoom = function(roomName){
+		this.socket.emit("leave room", roomName);
 	}
 
 	this.SendMessage = function(type, message){
