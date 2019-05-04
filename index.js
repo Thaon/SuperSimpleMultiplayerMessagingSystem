@@ -84,21 +84,26 @@ io.on("connection", function(socket){
 			{
 				tRoom.players.push(socket);
 				socket.emit("info", "The room has been joined successfully!");
-				
 			}
-			socket.emit("info", "Sorry but a room with the same name already exists");
+			else
+				socket.emit("info", "Sorry but the room is full :/");
 		}
 	})
 
 	socket.on("join empty room", function(){
 		//find a random room to join that is not full
+		var tRoom = null;
 		rooms.forEach(function(room){
 			if (room.players.length < room.maxPlayers)
 			{
+				tRoom = room;
 				tRoom.players.push(socket);
 				socket.emit("info", "The first empty room has been joined successfully!");
 			}
 		})
+
+		if (tRoom == null)
+			socket.emit("info", "Sorry but there is no empty room available :/");
 	})
 
 	socket.on("message", function(type, payload){
