@@ -34,11 +34,11 @@ io.on("connection", function(socket){
 
 io.on("disconnect", function(socket){
 	console.log("user disconnected: " + socket.id);
-	
+
 	//check if the room this socket was in is empty and remove it
 	rooms.forEach(function(room){
-		if (room.players.includes(socket))
-			room.players.pop(socket);
+		if (room.players.includes(socket.id))
+			room.players.pop(socket.id);
 
 		if(rooms.players.length == 0)
 			rooms.pop(room);
@@ -106,7 +106,7 @@ io.on("message", function(socket, type, payload){
 	var tRoom = null;
 
 	rooms.forEach(function(room){
-		if (room.players.includes(socket))
+		if (room.players.includes(socket.id))
 			tRoom = room;
 	})
 
@@ -114,7 +114,7 @@ io.on("message", function(socket, type, payload){
 	{
 		tRoom.players.forEach(function(tsocket)
 		{
-			if (socket != tsocket)
+			if (socket.id != tsocket.id)
 				tsocket.emit("message", type, payload);
 		})
 	}
