@@ -14,16 +14,16 @@ xmlns="http://www.w3.org/TR/REC-html40">
  <o:DocumentProperties>
   <o:Author>Gabriele Maddaloni</o:Author>
   <o:LastAuthor>Gabriele Maddaloni</o:LastAuthor>
-  <o:Revision>4</o:Revision>
-  <o:TotalTime>17</o:TotalTime>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>25</o:TotalTime>
   <o:Created>2019-05-04T10:17:00Z</o:Created>
-  <o:LastSaved>2019-05-04T12:24:00Z</o:LastSaved>
+  <o:LastSaved>2019-05-04T12:32:00Z</o:LastSaved>
   <o:Pages>1</o:Pages>
-  <o:Words>234</o:Words>
-  <o:Characters>1336</o:Characters>
-  <o:Lines>11</o:Lines>
+  <o:Words>268</o:Words>
+  <o:Characters>1531</o:Characters>
+  <o:Lines>12</o:Lines>
   <o:Paragraphs>3</o:Paragraphs>
-  <o:CharactersWithSpaces>1567</o:CharactersWithSpaces>
+  <o:CharactersWithSpaces>1796</o:CharactersWithSpaces>
   <o:Version>16.00</o:Version>
  </o:DocumentProperties>
  <o:OfficeDocumentSettings>
@@ -1510,11 +1510,12 @@ include the library in your index.html file like so:</p>
 class=SpellE>api</span>&quot;&gt;&lt;/script&gt;</p>
 
 <p class=MsoNormal align=center style='text-align:center'>Then initialise the
-library by calling the SSMMS constructor, specifying a handler for messages and
-whether you want to log debug messages on the console:</p>
+library by calling the SSMMS constructor, specifying a handler for messages,
+one for when a rooms list is received and whether you want to log debug
+messages on the console:</p>
 
 <p class=MsoIntenseQuote>var server = <span class=GramE>SSMMS(</span><span
-class=SpellE>messageHandler</span>, <span class=SpellE>onConnectedHandler</span>,
+class=SpellE>messageHandler</span>, <span class=SpellE>onRoomsReceivedHandler</span>,
 true);</p>
 
 <p class=MsoNormal align=center style='text-align:center'>then initiate a
@@ -1532,8 +1533,8 @@ class=GramE>function(</span>type, message){}</p>
 class=SpellE>onConnectedHandler</span>, which is called when the connection is
 complete and the rooms are updated, follows this:</p>
 
-<p class=MsoIntenseQuote>Var <span class=SpellE>onConnectedHandler</span> = <span
-class=GramE>function(</span>){}</p>
+<p class=MsoIntenseQuote>Var <span class=SpellE>onRoomsReceivedHandler</span> =
+<span class=GramE>function(</span>){}</p>
 
 <div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
 mso-border-bottom-alt:solid windowtext .75pt;padding:0cm 0cm 1.0pt 0cm'>
@@ -1571,6 +1572,29 @@ mso-bidi-theme-font:minor-bidi;font-weight:normal'><o:p></o:p></span></strong></
 class=MsoSubtleEmphasis>Creates a room called <b style='mso-bidi-font-weight:
 normal'>name</b> on the server, accepting a maximum of <span class=SpellE><b
 style='mso-bidi-font-weight:normal'>maxPlayers</b></span> players in it.<o:p></o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+class=MsoSubtleEmphasis><span style='color:windowtext;font-style:normal'><o:p>&nbsp;</o:p></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span class=SpellE><span
+class=GramE><strong><span style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi'>GetRooms</span></strong></span></span><span
+class=GramE><strong><span style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi'>(</span></strong></span><strong><span
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi'>);</span></strong><strong><span
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi;font-weight:normal'><o:p></o:p></span></strong></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+class=MsoSubtleEmphasis>Requests a list of the rooms on the server, on
+receiving it, the <span class=SpellE><b style='mso-bidi-font-weight:normal'>onRoomsReceivedHandler</b></span>
+method is called.</span><span class=MsoSubtleEmphasis><span style='color:windowtext;
+font-style:normal'><o:p></o:p></span></span></p>
 
 <p class=MsoNormal align=center style='text-align:center'><span
 class=MsoSubtleEmphasis><span style='color:windowtext;font-style:normal'><o:p>&nbsp;</o:p></span></span></p>
@@ -1632,20 +1656,37 @@ class=MsoSubtleEmphasis>Broadcasts a message to all players in the same room,
 the message sent specifies a <b style='mso-bidi-font-weight:normal'>type</b>
 and a <b style='mso-bidi-font-weight:normal'>message</b> body.<o:p></o:p></span></p>
 
+<p class=MsoNormal align=center style='text-align:center'><span
+class=MsoSubtleEmphasis><o:p>&nbsp;</o:p></span></p>
+
 <p class=MsoNormal align=center style='text-align:center'><strong><span
 style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
 mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
 mso-bidi-theme-font:minor-bidi;font-weight:normal;mso-bidi-font-weight:bold'>Additionally,
 you can get the rooms online at the moment by accessing the </span></strong><span
-class=SpellE><strong><span style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:
-minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
-mso-bidi-theme-font:minor-bidi'>server.rooms</span></strong></span><strong><span
+class=SpellE><span class=GramE><strong><span style='font-family:"Calibri",sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+"Times New Roman";mso-bidi-theme-font:minor-bidi'>server.rooms</span></strong></span></span><strong><span
 style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
 mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
 mso-bidi-theme-font:minor-bidi'> </span></strong><strong><span
 style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
 mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
-mso-bidi-theme-font:minor-bidi;font-weight:normal;mso-bidi-font-weight:bold'>variable!<o:p></o:p></span></strong></p>
+mso-bidi-theme-font:minor-bidi;font-weight:normal;mso-bidi-font-weight:bold'>variable!
+Note that they must be updated with </span></strong><span class=SpellE><span
+class=GramE><strong><span style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi'>GetRooms</span></strong></span></span><span
+class=GramE><strong><span style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi'>(</span></strong></span><strong><span
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi'>)</span></strong><strong><span
+style='font-family:"Calibri",sans-serif;mso-ascii-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-font-family:"Times New Roman";
+mso-bidi-theme-font:minor-bidi;font-weight:normal;mso-bidi-font-weight:bold'>
+to be accurate<o:p></o:p></span></strong></p>
 
 </div>
 

@@ -30,7 +30,6 @@ var rooms = [];
 io.on("connection", function(socket){
 	socket.emit("info", "Welcome to the SSMMS server!");
 	console.log("user connected: " + socket.id);
-	socket.emit("rooms", rooms);
 
 	socket.on("disconnect", function(){
 		console.log("user disconnected: " + socket.id);
@@ -43,6 +42,10 @@ io.on("connection", function(socket){
 			if(room.players.length == 0)
 				rooms.pop(room);
 		})
+	})
+
+	socket.on("get rooms", function(){
+		socket.emit("rooms", rooms);
 	})
 
 	socket.on("create room", function(roomName, maxPlayers){

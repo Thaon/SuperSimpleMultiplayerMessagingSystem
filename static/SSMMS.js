@@ -3,13 +3,13 @@ var scriptTag = document.createElement("script");
 scriptTag.src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js";
 document.getElementsByTagName("HEAD")[0].appendChild(scriptTag);
 
-var SSMMS = function(handler, onConnected, debug)
+var SSMMS = function(handler, gotRooms, debug)
 {
 
 	this.debug = debug;
 	this.rooms = [];
 	this.handler = handler;
-	this.onConnected = onConnected;
+	this.RoomsReceived = gotRooms;
 
 	this.Connect = function(proxy)
 	{
@@ -30,8 +30,12 @@ var SSMMS = function(handler, onConnected, debug)
 		proxy.socket.on("rooms", function(rooms)
 		{
 			proxy.rooms = rooms;
-			proxy.onConnected();
+			proxy.RoomsReceived();
 		})
+	}
+
+	this.GetRooms = function(){
+		this.socket.emit("get rooms");
 	}
 
 	this.CreateRoom = function(roomName, maxPlayers){
