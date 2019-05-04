@@ -31,7 +31,7 @@ io.on("connection", function(socket){
 	socket.emit("info", "Welcome to the SSMMS server!");
 	console.log("user connected: " + socket.id);
 
-	socket.on("disconnect", function(socket){
+	socket.on("disconnect", function(){
 		console.log("user disconnected: " + socket.id);
 
 		//check if the room this socket was in is empty and remove it
@@ -44,7 +44,7 @@ io.on("connection", function(socket){
 		})
 	})
 
-	socket.on("create room", function(socket, roomName, maxPlayers){
+	socket.on("create room", function(roomName, maxPlayers){
 		//create a new room if it's possible
 		var tRoom = null;
 
@@ -64,7 +64,7 @@ io.on("connection", function(socket){
 			socket.emit("info", "Sorry but a room with the same name already exists");
 	})
 
-	socket.on("join room", function(socket, roomName){
+	socket.on("join room", function(roomName){
 		//join an existing room
 		var tRoom = null;
 
@@ -89,7 +89,7 @@ io.on("connection", function(socket){
 		}
 	})
 
-	socket.on("join empty room", function(socket){
+	socket.on("join empty room", function(){
 		//find a random room to join that is not full
 		rooms.forEach(function(room){
 			if (room.players.length < room.maxPlayers)
@@ -100,7 +100,7 @@ io.on("connection", function(socket){
 		})
 	})
 
-	socket.on("message", function(socket, type, payload){
+	socket.on("message", function(type, payload){
 		//rely a message to all sockets in the same room
 		var tRoom = null;
 
