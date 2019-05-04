@@ -40,6 +40,10 @@ io.on("connection", function(socket){
 			{
 				console.log("Player was removed from room");
 				room.players.pop(socket);
+
+				room.players.forEach(function(player){
+					player.emit("user disconnected");
+				})
 			}
 
 			if(room.players.length == 0)

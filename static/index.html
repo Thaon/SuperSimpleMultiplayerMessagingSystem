@@ -14,16 +14,16 @@ xmlns="http://www.w3.org/TR/REC-html40">
  <o:DocumentProperties>
   <o:Author>Gabriele Maddaloni</o:Author>
   <o:LastAuthor>Gabriele Maddaloni</o:LastAuthor>
-  <o:Revision>7</o:Revision>
-  <o:TotalTime>50</o:TotalTime>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>86</o:TotalTime>
   <o:Created>2019-05-04T10:17:00Z</o:Created>
-  <o:LastSaved>2019-05-04T13:02:00Z</o:LastSaved>
+  <o:LastSaved>2019-05-04T13:38:00Z</o:LastSaved>
   <o:Pages>1</o:Pages>
-  <o:Words>260</o:Words>
-  <o:Characters>1482</o:Characters>
-  <o:Lines>12</o:Lines>
+  <o:Words>277</o:Words>
+  <o:Characters>1580</o:Characters>
+  <o:Lines>13</o:Lines>
   <o:Paragraphs>3</o:Paragraphs>
-  <o:CharactersWithSpaces>1739</o:CharactersWithSpaces>
+  <o:CharactersWithSpaces>1854</o:CharactersWithSpaces>
   <o:Version>16.00</o:Version>
  </o:DocumentProperties>
  <o:OfficeDocumentSettings>
@@ -1510,31 +1510,45 @@ include the library in your index.html file like so:</p>
 class=SpellE>api</span>&quot;&gt;&lt;/script&gt;</p>
 
 <p class=MsoNormal align=center style='text-align:center'>Then initialise the
-library by calling the SSMMS constructor, specifying a handler for messages,
-one for when a rooms list is received and whether you want to log debug
-messages on the console:</p>
+library by calling the SSMMS constructor, specifying whether you want to log
+debug messages on the console:</p>
 
-<p class=MsoIntenseQuote>var server = <span class=GramE>SSMMS(</span><span
-class=SpellE>messageHandler</span>, <span class=SpellE>onRoomsReceivedHandler</span>,
-true);</p>
+<p class=MsoIntenseQuote>var server = <span class=GramE>SSMMS(</span>debug);</p>
 
 <p class=MsoNormal align=center style='text-align:center'>then initiate a
 connection passing your server:</p>
 
 <p class=MsoIntenseQuote><span class=SpellE><span class=GramE>server.Connect</span></span>(server);</p>
 
-<p class=MsoNormal align=center style='text-align:center'>Note that the handler
-must follow the signature:</p>
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=MsoIntenseQuote>Var <span class=SpellE>messageHandler</span> = <span
+<p class=MsoNormal align=center style='text-align:center'>While this is enough
+to get a connection going, you may want to setup your handlers for the various
+events that happen:</p>
+
+<p class=MsoNormal align=center style='text-align:center'>The <b
+style='mso-bidi-font-weight:normal'>Messages Handler</b> must follow the
+signature:</p>
+
+<p class=MsoIntenseQuote>Var <span class=SpellE>MessageHandler</span> = <span
 class=GramE>function(</span>type, message){}</p>
 
-<p class=MsoNormal align=center style='text-align:center'>And the <span
-class=SpellE>onConnectedHandler</span>, which is called when the connection is
-complete and the rooms are updated, follows this:</p>
+<p class=MsoNormal align=center style='text-align:center'>The <span
+class=SpellE><b style='mso-bidi-font-weight:normal'>OnConnected</b></span><b
+style='mso-bidi-font-weight:normal'> Handler</b>, which is called when the
+connection is complete and the rooms are updated, follows this:</p>
 
-<p class=MsoIntenseQuote>Var <span class=SpellE>onRoomsReceivedHandler</span> =
+<p class=MsoIntenseQuote>Var <span class=SpellE>OnRoomsReceivedHandler</span> =
 function(<span class=SpellE>roomsOnServer</span><span class=GramE>){</span>}</p>
+
+<p class=MsoNormal align=center style='text-align:center'>Finally, the <span
+class=SpellE><b style='mso-bidi-font-weight:normal'>OnUserDisconnected</b></span><b
+style='mso-bidi-font-weight:normal'> Handler</b> follows this signature:</p>
+
+<p class=MsoIntenseQuote>Var <span class=SpellE>OnUserDisconnected</span> =
+function(){}<o:p></o:p></p>
+
+<p class=MsoNormal align=center style='text-align:center'><o:p>&nbsp;</o:p></p>
 
 <div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
 mso-border-bottom-alt:solid windowtext .75pt;padding:0cm 0cm 1.0pt 0cm'>
