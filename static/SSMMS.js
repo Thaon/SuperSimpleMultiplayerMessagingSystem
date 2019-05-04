@@ -16,15 +16,15 @@ var SSMMS = function(handler, debug)
 		proxy.socket = io('https://ssmms.herokuapp.com');
 
 		proxy.socket.on("info", function(message){
-			if (this.debug)
+			if (proxy.debug)
 				console.log(message);
 		})
 
 		proxy.socket.on("message", function(type, message){
-			if (this.debug)
+			if (proxy.debug)
 				console.log("message received: " + {"type": type, "message": message});
 		
-			this.handler(type, message);
+			proxy.handler(type, message);
 		})
 	}
 
