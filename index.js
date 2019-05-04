@@ -108,9 +108,10 @@ io.on("message", function(socket, type, payload){
 
 	if (tRoom != null)
 	{
-		tRoom.players.forEach(function(socket)
+		tRoom.players.forEach(function(tsocket)
 		{
-			socket.emit("message", type, payload);
+			if (socket != tsocket)
+				tsocket.emit("message", type, payload);
 		})
 	}
 })
