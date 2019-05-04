@@ -7,7 +7,6 @@ var SSMMS = function(handler, gotRooms, debug)
 {
 
 	this.debug = debug;
-	this.rooms = [];
 	this.handler = handler;
 	this.RoomsReceived = gotRooms;
 
@@ -27,10 +26,9 @@ var SSMMS = function(handler, gotRooms, debug)
 			proxy.handler(type, message);
 		})
 
-		proxy.socket.on("rooms", function(rooms)
+		proxy.socket.on("rooms", function(SrvRooms)
 		{
-			proxy.rooms = rooms;
-			proxy.RoomsReceived();
+			proxy.RoomsReceived(SrvRooms);
 		})
 	}
 
