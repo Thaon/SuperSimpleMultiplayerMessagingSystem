@@ -45,7 +45,8 @@ io.on("connection", function(socket){
 	})
 
 	socket.on("get rooms", function(){
-		socket.emit("rooms", rooms);
+		console.log("Rooms requested, sending back " + rooms.length + " rooms");
+		socket.emit("rooms received", rooms);
 	})
 
 	socket.on("create room", function(roomName, maxPlayers){

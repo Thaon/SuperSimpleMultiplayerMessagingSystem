@@ -26,8 +26,11 @@ var SSMMS = function(handler, gotRooms, debug)
 			proxy.handler(type, message);
 		})
 
-		proxy.socket.on("rooms", function(SrvRooms)
+		proxy.socket.on("rooms received", function(SrvRooms)
 		{
+			if (proxy.debug)
+				console.log("Received a list of rooms");
+			
 			proxy.RoomsReceived(SrvRooms);
 		})
 	}
