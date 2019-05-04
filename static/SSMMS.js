@@ -1,9 +1,9 @@
-//load socket.io
-var scriptTag = document.createElement("SocketIO");
-scriptTag.src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js";
-
 var SSMMS = function(handler, debug)
 {
+	//load socket.io
+	var scriptTag = document.createElement("SocketIO");
+	scriptTag.src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js";
+	
 	this.debug = debug;
 	this.socket = io("https://ssmms.herokuapp.com:3000");
 
