@@ -12,9 +12,16 @@ var SSMMS = function(handler, debug)
 	if (this.debug)
 		console.log("handler: " + this.handler);
 
-	this.socket.on("info", function(message){
+	this.prototype.socket.on("info", function(message){
 		if (this.debug)
-			alert(message);
+			console.log(message);
+	})
+
+	this.prototype.socket.on("message", function(type, message){
+		if (this.debug)
+			console.log("message received: " + {"type": type, "message": message});
+	
+		this.handler(type, message);
 	})
 
 	this.CreateRoom = function(roomName, maxPlayers){
@@ -32,11 +39,4 @@ var SSMMS = function(handler, debug)
 	this.SendMessage = function(type, message){
 		this.socket.emit("message", type, message);
 	}
-
-	this.socket.on("message", function(type, message){
-		if (this.debug)
-			alert("message received: " + {"type": type, "message": message});
-	
-		this.handler(type, message);
-	})
 }
