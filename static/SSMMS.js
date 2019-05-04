@@ -8,6 +8,7 @@ var SSMMS = function(handler, debug)
 
 	this.debug = debug;
 	this.socket = io("https://ssmms.herokuapp.com");
+	this.handler = handler;
 
 	this.socket.on("info", function(message){
 		if (this.debug)
@@ -31,6 +32,9 @@ var SSMMS = function(handler, debug)
 	}
 
 	this.socket.on("message", function(type, message){
-		handler(type, message);
+		if (this.debug)
+			console.log("message received: " + {"type": type, "message": message});
+	
+		this.handler(type, message);
 	})
 }
