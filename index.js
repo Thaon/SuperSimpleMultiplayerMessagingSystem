@@ -59,6 +59,7 @@ io.on("connection", function(socket){
 			tempRoom.players.push(socket);
 			rooms.push(tempRoom);
 			socket.emit("info", "Room has been created!");
+			console.log("Room created");
 		}
 		else
 			socket.emit("info", "Sorry but a room with the same name already exists");
