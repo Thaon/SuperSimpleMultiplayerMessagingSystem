@@ -7,7 +7,7 @@ var SSMMS = function(handler, debug)
 {
 
 	this.debug = debug;
-	this.socket = io('https://ssmms.herokuapp.com', {autoConnect: true});
+	this.socket = io('https://ssmms.herokuapp.com');
 	this.handler = handler;
 	if (this.debug)
 		console.log("handler: " + this.handler);
