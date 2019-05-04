@@ -18,25 +18,25 @@ var SSMMS = function(handler, debug)
 	})
 
 	this.CreateRoom = function(roomName, maxPlayers){
-		this.socket.emit("create room", this.socket, roomName, maxPlayers);
+		SSMMS.socket.emit("create room", SSMMS.socket, roomName, maxPlayers);
 	}
 
 	this.JoinRoom = function(roomName){
-		this.socket.emit("join room", this.socket, roomName);
+		SSMMS.socket.emit("join room", SSMMS.socket, roomName);
 	}
 
 	this.JoinEmptyRoom = function(){
-		this.socket.emit("join empty room", this.socket);
+		SSMMS.socket.emit("join empty room", SSMMS.socket);
 	}
 
 	this.SendMessage = function(type, message){
-		this.socket.emit("message", this.socket, type, message);
+		SSMMS.socket.emit("message", SSMMS.socket, type, message);
 	}
 
 	this.socket.on("message", function(type, message){
-		if (this.debug)
+		if (SSMMS.debug)
 			console.log("message received: " + {"type": type, "message": message});
 	
-		this.handler(type, message);
+		SSMMS.handler(type, message);
 	})
 }
