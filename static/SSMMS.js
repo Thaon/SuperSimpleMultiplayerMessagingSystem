@@ -3,7 +3,7 @@ var scriptTag = document.createElement("SocketIO");
 scriptTag.src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js";
 location.appendChild(scriptTag);
 
-var SSMMS = function(debug)
+var MessagingSystem = function(debug)
 {
 	this.debug = debug;
 	this.socket = io("https://ssmms.herokuapp.com:3000");
@@ -29,3 +29,5 @@ var SSMMS = function(debug)
 		this.socket.emit("message", this.socket, type, message);
 	}
 }
+
+var SSMMS = MessagingSystem();
