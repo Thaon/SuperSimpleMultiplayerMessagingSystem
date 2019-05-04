@@ -1,9 +1,11 @@
-var app = require("express")();
+var express = require("express");
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
 
-server.listen(80);
+var app = express();
 app.use(express.static("static"))
+
+server.listen(80);
 
 app.get("/", function(req, res){
 	 res.sendFile('/static/SSMMS.js', (err) => {
