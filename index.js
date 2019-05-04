@@ -29,7 +29,7 @@ function CleanRooms()
 	{
 		rooms.forEach(function(room){
 			room.players.forEach(function(player){
-				if (!io.sockets.includes(player))
+				if (!io.sockets.sockets.includes(player))
 				{
 					room.pop(player);
 				}
