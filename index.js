@@ -33,6 +33,8 @@ io.on("connection", function(socket){
 })
 
 io.on("disconnect", function(socket){
+	console.log("user disconnected: " + socket.id);
+	
 	//check if the room this socket was in is empty and remove it
 	rooms.forEach(function(room){
 		if (room.players.includes(socket))
@@ -41,8 +43,6 @@ io.on("disconnect", function(socket){
 		if(rooms.players.length == 0)
 			rooms.pop(room);
 	})
-
-	console.log("user disconnected: " + socket.id);
 })
 
 io.on("create room", function(socket, roomName, maxPlayers){
