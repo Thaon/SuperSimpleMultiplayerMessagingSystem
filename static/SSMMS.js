@@ -14,7 +14,7 @@ var SSMMS = function(handler, debug)
 
 	this.socket.on("info", function(message){
 		if (this.debug)
-			console.log(message);
+			alert(message);
 	})
 
 	this.CreateRoom = function(roomName, maxPlayers){
@@ -35,7 +35,7 @@ var SSMMS = function(handler, debug)
 
 	this.socket.on("message", function(type, message){
 		if (this.debug)
-			console.log("message received: " + {"type": type, "message": message});
+			alert("message received: " + {"type": type, "message": message});
 	
 		this.handler(type, message);
 	})
