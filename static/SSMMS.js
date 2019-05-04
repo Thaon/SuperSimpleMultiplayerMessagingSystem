@@ -1,5 +1,5 @@
 //load socket.io
-var scriptTag = document.createElement("SocketIO");
+var scriptTag = document.createElement("script");
 scriptTag.src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js";
 document.getElementsByTagName("HEAD")[0].appendChild(scriptTag);
 
