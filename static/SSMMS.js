@@ -7,22 +7,26 @@ var SSMMS = function(handler, debug)
 {
 
 	this.debug = debug;
-	this.socket = io('https://ssmms.herokuapp.com');
 	this.handler = handler;
 	if (this.debug)
 		console.log("handler: " + this.handler);
 
-	this.prototype.socket.on("info", function(message){
-		if (this.debug)
-			console.log(message);
-	})
+	this.Connect = function(proxy)
+	{
+		proxy.socket = io('https://ssmms.herokuapp.com');
 
-	this.prototype.socket.on("message", function(type, message){
-		if (this.debug)
-			console.log("message received: " + {"type": type, "message": message});
-	
-		this.handler(type, message);
-	})
+		proxy.socket.on("info", function(message){
+			if (this.debug)
+				console.log(message);
+		})
+
+		proxy.socket.on("message", function(type, message){
+			if (this.debug)
+				console.log("message received: " + {"type": type, "message": message});
+		
+			this.handler(type, message);
+		})
+	}
 
 	this.CreateRoom = function(roomName, maxPlayers){
 		this.socket.emit("create room", roomName, maxPlayers);
