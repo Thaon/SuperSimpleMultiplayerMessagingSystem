@@ -7,7 +7,7 @@ var SSMMS = function(handler, debug)
 {
 
 	this.debug = debug;
-	this.socket = io("https://ssmms.herokuapp.com:3000");
+	this.socket = io("https://ssmms.herokuapp.com");
 
 	this.socket.on("info", function(message){
 		if (this.debug)
