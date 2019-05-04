@@ -37,11 +37,19 @@ io.on("connection", function(socket){
 		//check if the room this socket was in is empty and remove it
 		rooms.forEach(function(room){
 			if (room.players.includes(socket))
+			{
+				console.log("Player was removed from room");
 				room.players.pop(socket);
+			}
 
 			if(room.players.length == 0)
+			{
+				console.log("The room was empty, bye bye room");
 				rooms.pop(room);
+			}
 		})
+
+		console.log("Rooms available now: " + rooms.length);
 	})
 
 	socket.on("get rooms", function(){
