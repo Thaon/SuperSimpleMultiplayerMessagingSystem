@@ -5,7 +5,8 @@ var io = require("socket.io")(server);
 var app = express();
 app.use(express.static("static"))
 
-server.listen(80);
+server.listen(3000);
+console.log("Listening on port 3000");
 
 app.get("/", function(req, res){
 	 res.sendFile('/static/SSMMS.js', (err) => {

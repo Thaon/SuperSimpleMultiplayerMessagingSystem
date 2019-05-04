@@ -6,7 +6,7 @@ location.appendChild(scriptTag);
 var SSMMS = function(debug)
 {
 	this.debug = debug;
-	this.socket = io();
+	this.socket = io("https://ssmms.herokuapp.com:3000");
 
 	this.socket.on("info", function(message){
 		if (this.debug)
