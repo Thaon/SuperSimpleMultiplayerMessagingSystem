@@ -28,6 +28,12 @@ function CleanRooms()
 	if (rooms.length > 0)
 	{
 		rooms.forEach(function(room){
+			room.players.forEach(function(player){
+				if (!io.sockets.includes(player))
+				{
+					room.pop(player);
+				}
+			})
 
 			if(room.players.length == 0)
 			{
