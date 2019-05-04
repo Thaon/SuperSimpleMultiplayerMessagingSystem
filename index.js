@@ -57,7 +57,7 @@ io.on("connection", function(socket){
 		{
 			var tempRoom = {"name":roomName, "maxPlayers":maxPlayers, "players":[]}
 			tempRoom.players.push(socket);
-			tRoom.push(tempRoom);
+			rooms.push(tempRoom);
 			socket.emit("info", "Room has been created!");
 		}
 		else
