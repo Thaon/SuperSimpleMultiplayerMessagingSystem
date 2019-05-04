@@ -45,8 +45,13 @@ io.on("connection", function(socket){
 	})
 
 	socket.on("get rooms", function(){
-		console.log("Rooms requested, sending back " + rooms.length + " rooms");
-		socket.emit("rooms received", rooms);
+		var rms = [];
+		rooms.forEach(function(tRoom){
+			rms.push(tRoom);
+		})
+		console.log("Rooms requested, sending back " + rms.length + " rooms");
+		socket.emit("rooms received", rms);
+		console.log("Sent!");
 	})
 
 	socket.on("create room", function(roomName, maxPlayers){
