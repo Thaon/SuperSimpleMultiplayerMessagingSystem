@@ -1,7 +1,7 @@
 //load socket.io
 var scriptTag = document.createElement("SocketIO");
 scriptTag.src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js";
-document.appendChild(scriptTag);
+document.getElementsByTagName("HEAD")[0].appendChild(scriptTag);
 
 var SSMMS = function(handler, debug)
 {
