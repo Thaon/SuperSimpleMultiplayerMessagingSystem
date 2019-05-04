@@ -1,19 +1,20 @@
 var express = require("express");
+var app = express();
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
+var path = require('path');
 
-var app = express();
-app.use(express.static("static"))
+app.set('port', PORT);
+app.use(express.static(__dirname + "static"));
 
-server.listen(3000);
-console.log("Listening on port 3000");
+var PORT = process.env.PORT || 3000;
 
-app.get("/", function(req, res){
-	 res.sendFile('/static/SSMMS.js', (err) => {
-    res.end();
+server.listen(PORT, function() {
+  console.log('Starting server on ' + PORT);
+});
 
-    if (err) throw(err);
-  });
+app.get("/api", function(req, res){
+	res.sendFile(path.join(__dirname, '/static/SSMMS.js'));
 })
 
 
