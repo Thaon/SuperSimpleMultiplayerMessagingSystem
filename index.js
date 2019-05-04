@@ -47,11 +47,11 @@ io.on("connection", function(socket){
 	socket.on("get rooms", function(){
 		var rms = [];
 
-		console.log("Rooms requested, sending back " + rms.length + " rooms");
+		console.log("Rooms requested, sending back " + rooms.length + " rooms");
 
 		rooms.forEach(function(tRoom){
 			console.log(tRoom.name + " - " + tRoom.maxPlayers);
-			rms.push(tRoom);
+			rms.push({"name":tRoom.name, "currentPlayers":tRoom.players.length, "maxPlayers":tRoom.maxPlayers});
 		})
 		socket.emit("rooms received", rms);
 		console.log("Sent!");
