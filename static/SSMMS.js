@@ -30,6 +30,6 @@ var SSMMS = function(handler, debug)
 	}
 
 	this.socket.on("message", function(type, message){
-		handler(type message);
+		handler(type, message);
 	})
 }
