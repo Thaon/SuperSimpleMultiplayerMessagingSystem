@@ -39,7 +39,7 @@ io.on("connection", function(socket){
 			if (room.players.includes(socket))
 				room.players.pop(socket);
 
-			if(rooms.players.length == 0)
+			if(room.players.length == 0)
 				rooms.pop(room);
 		})
 	})
@@ -59,7 +59,7 @@ io.on("connection", function(socket){
 			tempRoom.players.push(socket);
 			rooms.push(tempRoom);
 			socket.emit("info", "Room has been created!");
-			console.log("Room created");
+			console.log("Room created " + tempRoom);
 		}
 		else
 			socket.emit("info", "Sorry but a room with the same name already exists");
