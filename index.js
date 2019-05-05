@@ -9,6 +9,7 @@ app.use("/static", express.static(__dirname + "static"));
 app.use("/css", express.static(__dirname + "css"));
 app.use("/font", express.static(__dirname + "font"));
 app.use("/js", express.static(__dirname + "js"));
+server.use(express.static('./'));
 
 
 var PORT = process.env.PORT || 3000;
