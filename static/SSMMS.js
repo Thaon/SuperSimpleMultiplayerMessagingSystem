@@ -10,15 +10,15 @@ var SSMMS = function(debug)
 	
 	this.onMessage = function() {
 		if(this.debug)
-			debug.log("A message has been received");
+			console.log("A message has been received");
 	};
 	this.onRoomsReceived = function() {
 		if(this.debug)
-			debug.log("The rooms list has been received");
+			console.log("The rooms list has been received");
 	};
 	this.onUserDisconnected = function() {
 		if(this.debug)
-			debug.log("A player has disconnected");
+			console.log("A player has disconnected");
 	}
 
 	this.onError = function(code, description)
