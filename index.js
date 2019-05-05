@@ -6,6 +6,9 @@ var path = require('path');
 
 app.set('port', PORT);
 app.use(express.static(__dirname + "static"));
+app.use(express.static(__dirname + "static/js"));
+app.use(express.static(__dirname + "static/font"));
+app.use(express.static(__dirname + "static/css"));
 
 var PORT = process.env.PORT || 3000;
 
