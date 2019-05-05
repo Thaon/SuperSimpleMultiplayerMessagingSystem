@@ -6,6 +6,10 @@ var path = require('path');
 
 app.set('port', PORT);
 app.use("/static", express.static(__dirname + "static"));
+app.use("/css", express.static(__dirname + "static/css"));
+app.use("/font", express.static(__dirname + "static/font"));
+app.use("/js", express.static(__dirname + "static/js"));
+
 
 var PORT = process.env.PORT || 3000;
 
