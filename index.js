@@ -111,7 +111,10 @@ io.on("connection", function(socket){
 			console.log("Room created " + tempRoom);
 		}
 		else
+		{
 			socket.emit("info", "Sorry but a room with the same name already exists");
+			socket.emit("error", "CNC", "could not create room");
+		}
 	})
 
 	socket.on("join room", function(roomName){
@@ -125,6 +128,7 @@ io.on("connection", function(socket){
 
 		if(tRoom == null)
 		{
+			socket.emit("error", "CNJ", "could not join room, room does not exist");
 			socket.emit("info", "Sorry, The room you are looking for does not exist :/");
 		}
 		else
@@ -135,7 +139,10 @@ io.on("connection", function(socket){
 				socket.emit("info", "The room has been joined successfully!");
 			}
 			else
+			{
+				socket.emit("error", "CNJ", "could not join room, room is full");
 				socket.emit("info", "Sorry but the room is full :/");
+			}
 		}
 	})
 
@@ -152,7 +159,10 @@ io.on("connection", function(socket){
 		})
 
 		if (tRoom == null)
+		{
+			socket.emit("error", "CNJ", "could not join room, no empty room available");
 			socket.emit("info", "Sorry but there is no empty room available :/");
+		}
 	})
 
 	socket.on("leave room", function(roomName){
