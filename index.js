@@ -5,7 +5,7 @@ var io = require("socket.io")(server);
 var path = require('path');
 
 app.set('port', PORT);
-app.use(express.static(__dirname + "static"));
+app.use("/static", express.static(__dirname + "static"));
 
 var PORT = process.env.PORT || 3000;
 
