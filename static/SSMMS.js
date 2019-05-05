@@ -7,6 +7,7 @@ var SSMMS = function(debug)
 {
 
 	this.debug = debug;
+	
 	this.onMessage = function() {
 		if(this.debug)
 			debug.log("A message has been received");
@@ -18,6 +19,14 @@ var SSMMS = function(debug)
 	this.onUserDisconnected = function() {
 		if(this.debug)
 			debug.log("A player has disconnected");
+	}
+
+	this.onError = function(code, description)
+	{
+		if (this.debug)
+		{
+			console.log("Error code received: " + code + " - " + description);
+		}
 	}
 
 	this.Connect = function(proxy)
@@ -49,6 +58,13 @@ var SSMMS = function(debug)
 				console.log("Received a list of rooms");
 
 			proxy.onUserDisconnected();			
+		})
+
+		proxy.socket.on("error", function(code, description){
+			if (proxy.debug)
+				console.log("Received an error");
+
+			proxy.onError();
 		})
 	}
 
