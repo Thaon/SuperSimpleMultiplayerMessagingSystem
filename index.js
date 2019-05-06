@@ -102,7 +102,8 @@ io.on("connection", function(socket){
 		//if the roomName is empty, we simply create an empty room with an unused ID
 		if (roomName == "")
 		{
-			var tRoomName = "98jueprwqj843jh329hefupqth41538ur98ewqumrj3149u3c48m3u1ew8ur9j2ps43p12u" + rooms.length;
+			console.log("Creating empty name room");
+			var tRoomName = "98jueprwqj843jh329h9u3c48m3u1ew8ur9j2ps43p12u" + rooms.length;
 			var tempRoom = {"name":tRoomName, "maxPlayers":maxPlayers, "players":[]}
 			tempRoom.players.push(socket);
 			rooms.push(tempRoom);
