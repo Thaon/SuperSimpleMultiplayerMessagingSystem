@@ -99,17 +99,11 @@ io.on("connection", function(socket){
 	})
 
 	socket.on("create room", function(roomName, maxPlayers){
-		//create a new room if it's possible
-		var tRoom = null;
-
-		rooms.forEach(function(room){
-			if (room.name == roomName)
-				tRoom = room;
-		})
-
-		if(tRoom == null)
+		//if the roomName is empty, we simply create an empty room with an unused ID
+		if (roomName == "")
 		{
-			var tempRoom = {"name":roomName, "maxPlayers":maxPlayers, "players":[]}
+			var tRoomName = "98jueprwqj843jh329hefupqth41538ur98ewqumrj3149u3c48m3u1ew8ur9j2ps43p12u" + rooms.length;
+			var tempRoom = {"name":tRoomName, "maxPlayers":maxPlayers, "players":[]}
 			tempRoom.players.push(socket);
 			rooms.push(tempRoom);
 			socket.emit("info", "Room has been created!");
@@ -117,9 +111,28 @@ io.on("connection", function(socket){
 		}
 		else
 		{
-			socket.emit("info", "Sorry but a room with the same name already exists");
-			socket.emit("error", "CNC", "could not create room");
-		}
+			//create a new room if it's possible
+			var tRoom = null;
+
+			rooms.forEach(function(room){
+				if (room.name == roomName)
+					tRoom = room;
+			})
+
+			if(tRoom == null)
+			{
+				var tempRoom = {"name":roomName, "maxPlayers":maxPlayers, "players":[]}
+				tempRoom.players.push(socket);
+				rooms.push(tempRoom);
+				socket.emit("info", "Room has been created!");
+				console.log("Room created " + tempRoom);
+			}
+			else
+			{
+				socket.emit("info", "Sorry but a room with the same name already exists");
+				socket.emit("error", "CNC", "could not create room");
+			}
+		}	
 	})
 
 	socket.on("join room", function(roomName){
