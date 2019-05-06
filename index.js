@@ -169,11 +169,14 @@ io.on("connection", function(socket){
 		//find a random room to join that is not full
 		var tRoom = null;
 		rooms.forEach(function(room){
-			if (room.players.length < room.maxPlayers)
+			if (room.players != null)
 			{
-				tRoom = room;
-				tRoom.players.push(socket);
-				socket.emit("info", "The first empty room has been joined successfully!");
+				if (room.players.length < room.maxPlayers)
+				{
+					tRoom = room;
+					tRoom.players.push(socket);
+					socket.emit("info", "The first empty room has been joined successfully!");
+				}
 			}
 		})
 
